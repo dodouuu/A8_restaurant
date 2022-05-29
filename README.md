@@ -1,4 +1,4 @@
-![cover](https://raw.githubusercontent.com/dodouuu/pictures/main/A7%E9%A4%90%E5%BB%B3%E6%B8%85%E5%96%AE%E6%93%B4%E5%85%85%20CRUD%20%E5%8A%9F%E8%83%BD%20Cover.png)
+![cover](https://raw.githubusercontent.com/dodouuu/pictures/main/A8_restaurant.png)
 # Express app - Restaurant List ext CRUD
 打造一個網站來收集另一種愛好：餐廳
 > extended function: 
@@ -12,9 +12,10 @@
 
 1. 在首頁瀏覽餐廳資料，包含：
     1. 餐廳照片
-    2. 餐廳名稱
+    2. 餐廳中文名稱、英文名稱
     3. 餐廳分類
-    4. 餐廳評分
+	4. 餐廳地址
+    5. 餐廳評分
 2. 點餐廳的照片，或者【Detail】按鈕，可以查看詳細資訊：
     1. 類別
     2. 地址 (結尾的箭頭點進去會跳轉到 Google Map)
@@ -25,15 +26,20 @@
 4. 在首頁，按【新增餐廳】可以新增一間餐廳，記得每一個欄位都必須輸入
 5. 在首頁，按【Edit】可以更新餐廳資料，記得按【Save】
 6. 在首頁，按【Delete】可以刪除餐廳
+7. 右上角 dropdown list 可以排序
+	1. 按照餐廳的英文名稱 A~Z排序
+	2. 按照餐廳的英文名稱 Z~A排序
+	3. 按照餐廳的分類升冪排序
+	4. 按照餐廳的地址升冪排序
 ---
 安裝
 1. 從 Terminal (command line interface) 移動到想存放專案的位置，執行：
 ```
-git clone https://github.com/dodouuu/A7_restaurant.git
+git clone https://github.com/dodouuu/A8_restaurant.git
 ```
 2. 進入 repository 
 ```
-cd A7_restaurant
+cd A8_restaurant
 ```
 3. 安裝套件
 ```
@@ -44,6 +50,8 @@ npm i express@4.16.4
 npm i express-handlebars@4.0.2
 npm i mongoose@5.9.7
 npm install body-parser
+npm install method-override@3.0.0
+npm install standard --save-dev
 ```
 4. 資料庫
     1. 開啟 MongoDB Atlas
@@ -83,3 +91,4 @@ ctrl + C
 4. MongoDB mongoose 5.9.7
 5. Font-awesome 5.15.4
 6. Bootstrap 5.0.2
+7. method-override 3.0.0

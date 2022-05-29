@@ -12,7 +12,7 @@ db.on('error', () => { // 連線異常
 })
 
 db.once('open', () => { // 連線成功
-  console.log('mongodb connected!')
+  console.log('mongoDB connected!')
 })
 
 module.exports = db

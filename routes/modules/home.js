@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 })
 
 router.get('/sort', (req, res) => {
-
   const sortBy = req.query.sortBy
 
   if (sortBy === 'az') {

@@ -1,10 +1,10 @@
 const Restaurant = require('../restaurant') // 引用 Schema
 const restaurantList = require('../../restaurant.json').results
 
-const db = require("../../config/mongoose")
+const db = require('../../config/mongoose')
 
 db.once('open', () => {
-  console.log('mongodb connected!')
+  console.log('start restaurantSeeder')
   Restaurant.create(restaurantList)
     .then(() => {
       console.log('restaurantSeeder create successfully!')

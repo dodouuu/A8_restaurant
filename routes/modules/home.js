@@ -13,6 +13,37 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+router.get('/sort', (req, res) => {
+
+  const sortBy = req.query.sortBy
+
+  if (sortBy === 'az') {
+    Restaurant.find()
+      .lean()
+      .sort({ name_en: 'asc' }) // 根據 name_en ascending sort
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  } else if (sortBy === 'za') {
+    Restaurant.find()
+      .lean()
+      .sort({ name_en: 'desc' }) // 根據 name_en descending sort
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  } else if (sortBy === 'category') {
+    Restaurant.find()
+      .lean()
+      .sort({ category: 'asc' }) // 根據 category ascending sort
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  } else if (sortBy === 'location') {
+    Restaurant.find()
+      .lean()
+      .sort({ location: 'asc' }) // 根據 location ascending sort
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  }
+})
+
 // 搜尋餐廳
 router.get('/search', (req, res) => {
   const originalKeyword = req.query.keyword.trim()

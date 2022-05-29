@@ -35,7 +35,6 @@ router.get('/:id/edit', (req, res) => {
 // update 的動作
 router.put('/:id', (req, res) => {
   const id = req.params.id
-  const { name, isDone } = req.body
   const body = req.body
   return Restaurant.findById(id)
     .then(restaurant => {

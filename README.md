@@ -33,10 +33,11 @@
 5. 在首頁，按【Edit】可以更新餐廳資料，記得按【Save】
 6. 在首頁，按【Delete】可以刪除餐廳
 7. 右上角 dropdown list 可以排序
-	1. 按照餐廳的英文名稱 A~Z排序
-	2. 按照餐廳的英文名稱 Z~A排序
-	3. 按照餐廳的分類升冪排序
-	4. 按照餐廳的地址升冪排序
+	1. 按照餐廳的英文名稱 A~Z排序 (不分大小寫)
+	2. 按照餐廳的英文名稱 Z~A排序 (不分大小寫)
+	3. 按照餐廳的分類升冪排序 (不分大小寫)
+	4. 按照餐廳的地址升冪排序 (不分大小寫)
+	5. 前一次選擇的排序選項會保留下來
 8. 登入前，按左上角【Restaurant List】，顯示：請先登入才能使用！
 9. 註冊功能：
 	1. 註冊過，顯示：此 Email 已註冊
@@ -67,19 +68,20 @@ cd A8_restaurant
 ```
 macOS 請至nvm 的 GitHub 頁面：https://github.com/creationix/nvm。安裝 nvm
 Windows 請至nvm 的 GitHub 頁面：https://github.com/coreybutler/nvm-windows/releases。安裝 nvm
-nvm install 14.16.0
+nvm i 14.16.0
 npm i express@4.16.4
+npm i nodemon
 npm i express-handlebars@4.0.2
 npm i mongoose@5.9.7
-npm install body-parser
-npm install method-override@3.0.0
+npm i body-parser
+npm i method-override@3.0.0
 npm i dotenv@8.2.0
 npm i express-session@1.17.1
 npm i passport@0.4.1 passport-local@1.0.0
 npm i connect-flash@0.1.1
 npm i bcryptjs@2.4.3
 npm i passport-facebook@3.0.0
-npm install standard --save-dev
+npm i standard --save-dev
 ```
 4. 資料庫
     1. 開啟 MongoDB Atlas
@@ -102,8 +104,8 @@ npm run seed
 ```
 mongoDB connected!
 start restaurantSeeder
-done. user1
-done. user2
+SEED_USER_1 done
+SEED_USER_2 done
 ```
 7. 執行
 ```
@@ -138,8 +140,9 @@ ctrl + C
 8. express-session 1.17.1
 9. method-override 3.0.0
 10. MongoDB mongoose 5.9.7
-11. passport 0.4.1
-12. passport-facebook 3.0.0
-13. passport-local 1.0.0
-14. Font-awesome 5.15.4
-15. Bootstrap 5.0.2
+11. nodemon 2.0.16
+12. passport 0.4.1
+13. passport-facebook 3.0.0
+14. passport-local 1.0.0
+15. Font-awesome 5.15.4
+16. Bootstrap 5.0.2

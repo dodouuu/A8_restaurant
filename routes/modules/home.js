@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 // 排序功能
 router.get('/sort', (req, res) => {
-  const sortBy = req.query.sortBy
+  const sortBy = req.query.sortBy // 來自 index.hbs <select name="sortBy"
   const userId = req.user._id
   if (sortBy === 'az') {
     Restaurant.find({ userId })

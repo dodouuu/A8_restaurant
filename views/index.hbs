@@ -5,7 +5,7 @@
       aria-label="Search Restaurant" value="{{keywords}}" aria-describedby="search-button" />
 
     <button class="btn btn-outline-danger my-2 my-sm-0 ms-2" type="submit" id="search-button">
-      <i class="fas fa-search"></i>
+      <i class="fa-solid fa-magnifying-glass"></i>
     </button>
   </form>
 
@@ -17,10 +17,13 @@
       <option value="az" {{#if sortAZ}}selected{{/if}}>A -> Z</option>
       <option value="za" {{#if sortZA}}selected{{/if}}>Z -> A</option>
       <option value="category" {{#if sortCat}}selected{{/if}}>分類</option>
-      <option value="location" {{#if sortLoc}}selected{{/if}}>地區</option>
+      <option value="location" {{#if sortLoc}}selected{{/if}}>地址</option>
     </select>
 
-    <button type="submit" class="btn btn-outline-danger ms-2">Sort</button>
+    <button type="submit" class="btn btn-outline-danger ms-2">
+      <span class="me-1">Sort</span>
+      <i class="fa-solid fa-arrow-down-wide-short"></i>
+    </button>
   </form>
 </div>
 
@@ -45,7 +48,7 @@
           </div>
           <span class="badge rounded-pill bg-danger fw-normal">
             {{this.rating}}
-            <i class="fas fa-star fa-xs"></i>
+            <i class="fa-solid fa-star"></i>
           </span>
 
         </div>

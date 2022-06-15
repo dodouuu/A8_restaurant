@@ -44,12 +44,15 @@ db.once('open', () => {
             google_map: restaurantList[i].google_map,
             rating: restaurantList[i].rating,
             description: restaurantList[i].description,
-            userId: userId
+            userId: userId,
+            name_en_insensitive: restaurantList[i].name_en.toLowerCase(),
+            category_insensitive: restaurantList[i].category.toLowerCase(),
+            location_insensitive: restaurantList[i].location.toLowerCase()
           })
         ))
     })
     .then(() => {
-      console.log('done. user1')
+      console.log('SEED_USER_1 done')
       // process.exit() // 等於 ctrl + C 關閉這段 Node 執行程序
     })
 
@@ -74,19 +77,15 @@ db.once('open', () => {
             google_map: restaurantList[i + 3].google_map,
             rating: restaurantList[i + 3].rating,
             description: restaurantList[i + 3].description,
-            userId: userId
+            userId: userId,
+            name_en_insensitive: restaurantList[i + 3].name_en.toLowerCase(),
+            category_insensitive: restaurantList[i + 3].category.toLowerCase(),
+            location_insensitive: restaurantList[i + 3].location.toLowerCase()
           })
         ))
     })
     .then(() => {
-      console.log('done. user2')
+      console.log('SEED_USER_2 done')
       process.exit() // 等於 ctrl + C 關閉這段 Node 執行程序
     })
-
-  // Restaurant.create(restaurantList)
-  //   .then(() => {
-  //     console.log('restaurantSeeder create successfully!')
-  //     db.close()
-  //   })
-  //   .catch(err => console.log(err))
 })

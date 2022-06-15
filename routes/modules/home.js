@@ -15,32 +15,33 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// 排序功能
 router.get('/sort', (req, res) => {
   const sortBy = req.query.sortBy
-
+  const userId = req.user._id
   if (sortBy === 'az') {
-    Restaurant.find()
+    Restaurant.find({ userId })
       .lean()
-      .sort({ name_en: 'asc' }) // 根據 name_en ascending sort
-      .then(restaurants => res.render('index', { restaurants }))
+      .sort({ name_en_insensitive: 'asc' }) // 根據 name_en ascending sort 不分大小寫
+      .then(restaurants => res.render('index', { restaurants, sortAZ: true }))
       .catch(error => console.error(error))
   } else if (sortBy === 'za') {
-    Restaurant.find()
+    Restaurant.find({ userId })
       .lean()
-      .sort({ name_en: 'desc' }) // 根據 name_en descending sort
-      .then(restaurants => res.render('index', { restaurants }))
+      .sort({ name_en_insensitive: 'desc' }) // 根據 name_en descending sort 不分大小寫
+      .then(restaurants => res.render('index', { restaurants, sortZA: true }))
       .catch(error => console.error(error))
   } else if (sortBy === 'category') {
-    Restaurant.find()
+    Restaurant.find({ userId })
       .lean()
-      .sort({ category: 'asc' }) // 根據 category ascending sort
-      .then(restaurants => res.render('index', { restaurants }))
+      .sort({ category_insensitive: 'asc' }) // 根據 category ascending sort 不分大小寫
+      .then(restaurants => res.render('index', { restaurants, sortCat: true }))
       .catch(error => console.error(error))
   } else if (sortBy === 'location') {
-    Restaurant.find()
+    Restaurant.find({ userId })
       .lean()
-      .sort({ location: 'asc' }) // 根據 location ascending sort
-      .then(restaurants => res.render('index', { restaurants }))
+      .sort({ location_insensitive: 'asc' }) // 根據 location ascending sort 不分大小寫
+      .then(restaurants => res.render('index', { restaurants, sortLoc: true }))
       .catch(error => console.error(error))
   }
 })
@@ -48,19 +49,22 @@ router.get('/sort', (req, res) => {
 // 搜尋餐廳
 router.get('/search', (req, res) => {
   const originalKeyword = req.query.keyword.trim()
-  const lowerCaseKeyword = originalKeyword.toLowerCase()
-
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({
+    $and: [
+      { userId },
+      {
+        $or: [
+          { name: { $regex: originalKeyword, $options: 'si' } },
+          { category: { $regex: originalKeyword, $options: 'si' } }
+        ]
+      }
+    ]
+  })
     .lean()
-    .then(restaurantList => {
-      const restaurants = restaurantList.filter(
-        restaurant => {
-          return restaurant.name.toLowerCase().includes(lowerCaseKeyword) || restaurant.category.toLowerCase().includes(lowerCaseKeyword)
-        }
-      )
+    .then(restaurants => {
       res.render('index', { restaurants, keywords: originalKeyword })
     })
-
     .catch(error => console.error(error))
 })
 

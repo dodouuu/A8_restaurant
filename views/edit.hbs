@@ -17,9 +17,9 @@
     <option value="酒吧" />
     <option value="咖啡" />
   </datalist>
-  <input class="d-block m-2" type="text" placeholder="圖片網址" name="image" value="{{restaurant.image}}" required />
+  <input class="d-block m-2" type="text" placeholder="圖片網址" name="image" value="{{restaurant.image}}" />
   <input class="d-block m-2" type="text" placeholder="餐廳地址" name="location" value="{{restaurant.location}}" required />
-  <input class="d-block m-2" type="text" placeholder="餐廳電話" name="phone" value="{{restaurant.phone}}" required />
+  <input class="d-block m-2" type="text" placeholder="餐廳電話" name="phone" value="{{restaurant.phone}}" />
   <input class="d-block m-2" type="text" placeholder="GoogleMap網址" name="google_map" value="{{restaurant.google_map}}"
     required />
 
@@ -30,8 +30,8 @@
   <span id="showRating"></span>
 
   <label for="description" class="d-block m-2">餐廳描述：</label>
-  <textarea id="description" class="m-2" type="text" rows="3" cols="40" name="description"
-    required>{{restaurant.description}}</textarea>
+  <textarea id="description" class="m-2" type="text" rows="3" cols="40"
+    name="description">{{restaurant.description}}</textarea>
 
   <div class="d-flex justify-content-center">
     <button type="submit" class="btn btn-info btn-lg m-2">Save</button>

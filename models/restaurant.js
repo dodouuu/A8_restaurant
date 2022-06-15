@@ -4,9 +4,12 @@ const Schema = mongoose.Schema
 const restaurantSchema = new Schema({
   name: { type: String, required: true },
   name_en: { type: String, required: true },
+  name_en_insensitive: { type: String, required: false }, // for sort
   category: { type: String, required: true },
+  category_insensitive: { type: String, required: false }, // for sort
   image: { type: String, required: false },
   location: { type: String, required: true },
+  location_insensitive: { type: String, required: false }, // for sort
   phone: { type: String, required: false },
   google_map: { type: String, required: true },
   rating: { type: Number, required: true },

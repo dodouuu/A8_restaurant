@@ -1,14 +1,20 @@
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+const MONGODB_URI = process.env.MONGODB_URI
+
+mongoose.connect(
+  MONGODB_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  }
+)
 
 const db = mongoose.connection
 
 db.on('error', () => { // 連線異常
-  console.log('mongodb error!')
+  console.log('mongoDB error!')
 })
 
 db.once('open', () => { // 連線成功

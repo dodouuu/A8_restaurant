@@ -1,12 +1,14 @@
-// 引用 Express 與 Express 路由器
+// 引用 Express
 const express = require('express')
+// 引用 Express 路由器
 const router = express.Router()
-
-const Restaurant = require('../../models/restaurant') // 引用 Schema
+// 引用 Restaurant model
+const Restaurant = require('../../models/restaurant')
 
 // 定義首頁路由
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .sort({ _id: 'asc' }) // 根據 _id ascending sort
     .then(restaurants => res.render('index', { restaurants }))

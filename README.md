@@ -1,16 +1,18 @@
-![cover](https://raw.githubusercontent.com/dodouuu/pictures/main/A8_restaurant.png)
-# Express app - Restaurant List ext CRUD
+![cover](https://raw.githubusercontent.com/dodouuu/pictures/main/semester3_A1.png)
+# Express app - Restaurant List ext CRUD, Login
 打造一個網站來收集另一種愛好：餐廳
 > extended function: 
 > Create
 > Read
 > Update
 > Delete
+> Login
+> Login with Facebook
 
 ---
 ## 功能列表
 
-1. 在首頁瀏覽餐廳資料，包含：
+1. 在首頁瀏覽餐廳資料，包含全部餐廳：
     1. 餐廳照片
     2. 餐廳中文名稱、英文名稱
     3. 餐廳分類
@@ -31,6 +33,22 @@
 	2. 按照餐廳的英文名稱 Z~A排序
 	3. 按照餐廳的分類升冪排序
 	4. 按照餐廳的地址升冪排序
+8. 登入前，按左上角【Restaurant List】，顯示：請先登入才能使用！
+9. 註冊功能：
+	1. 註冊過，顯示：此 Email 已註冊
+	2. 未填Email，顯示：未填 email
+	3. 未填Password，顯示：未填 password
+	4. 兩個密碼不同，顯示：密碼、確認密碼不相符！
+10. 登入功能：
+	1. Email不存在，顯示：The email is not registered!
+	2. 密碼錯，顯示：Password incorrect.
+	3. 在 login page 和 register page 都可以使用 Facebook Login
+11. 登入成功後
+	1. 有填 Name 的用戶，例如Joe，左上角會顯示：Joe's Restaurant List
+	2. 沒填 Name 的用戶，左上角會顯示：Restaurant List
+12. 登出，顯示：你已經成功登出。
+13. 密碼經過 bcrypt 加密
+14. 登入後才能使用餐廳清單
 ---
 安裝
 1. 從 Terminal (command line interface) 移動到想存放專案的位置，執行：
@@ -51,22 +69,43 @@ npm i express-handlebars@4.0.2
 npm i mongoose@5.9.7
 npm install body-parser
 npm install method-override@3.0.0
+npm i dotenv@8.2.0
+npm i express-session@1.17.1
+npm i passport@0.4.1 passport-local@1.0.0
+npm i connect-flash@0.1.1
+npm i bcryptjs@2.4.3
+npm i passport-facebook@3.0.0
 npm install standard --save-dev
 ```
 4. 資料庫
     1. 開啟 MongoDB Atlas
     2. 開啟 Robo3T 
-    3. 設定環境變數，以 Git Bash 為例，輸入：
+    3. 設定環境變數，新創一個.env檔案，可以模仿.env.example：
     ```
-    export MONGODB_URI="mongodb+srv://<username>:<password>@cluster0.am8naws.mongodb.net/restaurant?retryWrites=true&w=majority"
+    FACEBOOK_APP_ID=SKIP
+	FACEBOOK_APP_SECRET=SKIP
+	FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
+	SESSION_SECRET=ThisIsMySecret
+	MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.am8naws.mongodb.net/<DatabaseName>?retryWrites=true&w=majority
+	PORT=3000
     ```
 
 5. 執行
 ```
 npm run seed
-npm run dev
 ```
 6. 確認 Terminal 顯示
+```
+mongoDB connected!
+start restaurantSeeder
+done. user1
+done. user2
+```
+7. 執行
+```
+npm run dev
+```
+8. 確認 Terminal 顯示
 ```
 [nodemon] 2.0.16
 [nodemon] to restart at any time, enter `rs`
@@ -78,7 +117,7 @@ mongoDB connected!
 ```
 代表啟動成功，打開瀏覽器，在網址列輸入http://localhost:3000
 
-7. 停止伺服器
+9. 停止伺服器
 ```
 ctrl + C
 ```
@@ -86,9 +125,17 @@ ctrl + C
 ---
 ## 開發工具
 1. Node.js 14.16.0
-2. Express 4.16.4
-3. Express-Handlebars 4.0.2
-4. MongoDB mongoose 5.9.7
-5. Font-awesome 5.15.4
-6. Bootstrap 5.0.2
-7. method-override 3.0.0
+2. bcryptjs 2.4.3
+3. body-parser1.20.0
+4. connect-flash 0.1.1
+5. dotenv 8.2.0
+6. express 4.16.4
+7. express-handlebars 4.0.2
+8. express-session 1.17.1
+9. method-override 3.0.0
+10. MongoDB mongoose 5.9.7
+11. passport 0.4.1
+12. passport-facebook 3.0.0
+13. passport-local 1.0.0
+14. Font-awesome 5.15.4
+15. Bootstrap 5.0.2

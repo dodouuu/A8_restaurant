@@ -1,6 +1,9 @@
+// 引用 Express
 const express = require('express')
+// 引用 Express 路由器
 const router = express.Router()
-const Restaurant = require('../../models/restaurant') // 引用 Schema
+// 引用 Restaurant model
+const Restaurant = require('../../models/restaurant')
 
 // 新增餐廳頁面的路由
 router.get('/new', (req, res) => {
@@ -38,15 +41,7 @@ router.put('/:id', (req, res) => {
   const body = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
-      restaurant.name = body.name
-      restaurant.name_en = body.name_en
-      restaurant.category = body.category
-      restaurant.image = body.image
-      restaurant.location = body.location
-      restaurant.phone = body.phone
-      restaurant.google_map = body.google_map
-      restaurant.rating = body.rating
-      restaurant.description = body.description
+      restaurant = Object.assign(restaurant, body)
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))

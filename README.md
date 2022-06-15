@@ -1,4 +1,4 @@
-![cover](https://raw.githubusercontent.com/dodouuu/pictures/main/semester3_A1.png)
+![cover](https://raw.githubusercontent.com/dodouuu/pictures/main/semester3_A1%20v2.png)
 # Express app - Restaurant List ext CRUD, Login
 打造一個網站來收集另一種愛好：餐廳
 > extended function: 
